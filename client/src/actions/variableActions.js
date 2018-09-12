@@ -11,7 +11,12 @@ export const getAllVariables = () => (dispatch) => {
     })
 }
 
-export const saveVariable = (variables) => ({
+const saveVariable = (variables) => ({
   type: 'SAVE_VARIABLES',
   variables
+})
+
+export const setSelectedVariable = (variable) => ({
+  type: 'SET_SELECTED_VARIABLE',
+  variable
 })

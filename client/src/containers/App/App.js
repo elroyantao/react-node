@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import VariableSelector from '../VariableSelector/VariableSelector'
+
 import logo from '../../logo.svg'
 import { getAllVariables } from '../../actions/variableActions'
 
@@ -18,6 +20,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <VariableSelector />
       </div>
     )
   }
