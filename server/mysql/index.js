@@ -11,7 +11,7 @@ module.exports.connectDb = () => {
   return db
 }
 
-const getCountByColumnQuery = `SELECT ??, COUNT(*) as count, AVG(age) 
+const getCountByColumnQuery = `SELECT ?? as col, COUNT(*) as count, AVG(age) as ageAvg
   FROM census_learn_sql
   GROUP BY ??
   ORDER BY count DESC
@@ -19,7 +19,6 @@ const getCountByColumnQuery = `SELECT ??, COUNT(*) as count, AVG(age)
 
 module.exports.getAggragate = (db, column, callback) => {
   const query = mysql.format(getCountByColumnQuery, [column, column])
-  console.log(column)
   return db.query(query, callback)
 }
 

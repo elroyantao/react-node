@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { setSelectedVariable } from '../../actions/variableActions'
+import { selectedVariableChanged } from '../../actions/variableActions'
+
+import './VariableSelector.css'
 
 class VariableSelector extends Component {
   constructor(props) {
@@ -11,21 +13,22 @@ class VariableSelector extends Component {
     }
   }
   onChangeSelectedVariable = (event) => {
-    const { setSelectedVariable } = this.props
+    const { selectedVariableChanged } = this.props
     const selected = event.target.value
     this.setState({
       selectedVariable: selected
     })
-    setSelectedVariable(selected)
+    selectedVariableChanged(selected)
   }
   render() {
-    const { variables } = this.props
+    const { variables, loading } = this.props
     const { selectedVariable } = this.state
     return (
-      <div>
-        <select value={selectedVariable} onChange={this.onChangeSelectedVariable}>
+      <div className="VariableSelector">
+        Variable : 
+        <select value={selectedVariable} onChange={this.onChangeSelectedVariable} disabled={loading}>
           {variables.map(({ label, value }) => (
-            <option value={value}>{label}</option>
+            <option key={value} value={value}>{label}</option>
           ))}
         </select>
       </div>
@@ -35,11 +38,12 @@ class VariableSelector extends Component {
 
 const mapStateToProps = (state) => ({
   variables: state.variables.list,
-  selectedVariable: state.variables.selectedVariable
+  selectedVariable: state.variables.selectedVariable,
+  loading: state.aggregates.loading
 })
 
 const mapDispatchToProps = {
-  setSelectedVariable
+  selectedVariableChanged
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VariableSelector)

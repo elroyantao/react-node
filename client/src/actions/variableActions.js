@@ -1,4 +1,5 @@
 import { callApi } from '../lib/fetchHelper'
+import { getAggregates } from './aggregateActions'
 
 export const getAllVariables = () => (dispatch) => {
   callApi('/api/columns')
@@ -16,7 +17,12 @@ const saveVariable = (variables) => ({
   variables
 })
 
-export const setSelectedVariable = (variable) => ({
+export const selectedVariableChanged = (variable) => (dispatch) => {
+  dispatch(setSelectedVariable(variable))
+  dispatch(getAggregates())
+}
+
+const setSelectedVariable = (variable) => ({
   type: 'SET_SELECTED_VARIABLE',
   variable
 })

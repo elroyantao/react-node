@@ -1,0 +1,26 @@
+table {
+  width: 100%;
+  padding: 10px 20px;
+}
+
+table tr {
+  border-bottom: 1px solid #999898;
+}
+
+table thead tr {
+  border-bottom: 1px solid black;
+}
+
+table td, table th {
+  padding: 5px 5px;
+  text-align: left;
+}
+
+table tbody tr:nth-of-type(2n + 1) {
+  background: rgba(214, 214, 214, 0.63);
+}
+
+table th {
+  font-size: 1.15em;
+  font-weight: bold;
+}
